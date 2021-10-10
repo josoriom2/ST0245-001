@@ -9,14 +9,14 @@ from numpy import loadtxt
 cwdpath = os.getcwd()
 imagenespath = os.path.join(cwdpath, "imagenes") 
 csvpath = os.path.join(cwdpath, "archivos_csv2") 
-
+#se usaron relative paths para hacer mas amena la asignacion de rutas, ya que solo se necesitan los nombres de las carpeta de origen y la de destino
 listaarchivos =os.listdir(csvpath)
 
 
 def comprimir(imagen: np.ndarray , escala : int):
     try:
         if escala == 1:
-            comprimida = imagen       
+            comprimida = imagen    #caso en donde la imagen quedaria igual   
         else:
             filas, columnas = imagen.shape
             filascomprimidas, columnascomprimidas = math.ceil(filas/escala), math.ceil(columnas/escala)
@@ -30,10 +30,12 @@ def comprimir(imagen: np.ndarray , escala : int):
     
 def guardarcsv(pathimagen : str): 
     matrizcsv = loadtxt(str(pathimagen),dtype=int, delimiter=',')
-    return matrizcsv
+    return matrizcsv #parte de la primera entrega, recorre la carpeta
 
 
 for imagen in listaarchivos:
+#el codigo integra la primera entrega por lo que es capaz de recorrer una carpeta de csv
+#e irlos guardando en memoria mientras comprime todos los csv y los guarda nuevamente como imagenes comprimidas en una ruta asignada.
 
     csvpatharchivo= os.path.join(csvpath, imagen)
     print(csvpatharchivo)
